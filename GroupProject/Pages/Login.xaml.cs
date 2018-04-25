@@ -57,7 +57,7 @@ namespace GroupProject.Pages
                 if (list[2] == "warehouse manager")
                 {
                     ErrorLabel.Content = "warehouse manager to be loged";
-                    //Switcher.Switch(new Warehouse());
+                    Switcher.Switch(new Warehouse());
                 }
             }
 

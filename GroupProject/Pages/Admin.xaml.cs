@@ -34,5 +34,17 @@ namespace GroupProject.Pages
         {
             Switcher.Switch(new Exec());
         }
+
+        private void Submit_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            string query = "Select * FROM ";
+            List<List<string>> list = DatabaseManagement.SelectQuery(query);
+            
+        }
     }
 }

@@ -17,12 +17,12 @@
         <ComboBox x:Name="ItemsListBox" HorizontalAlignment="Left" Height="78" Margin="73,0,0,169" VerticalAlignment="Bottom" Width="366" IsEditable="True"/>
         <Button x:Name="Add_button" Content="Add" HorizontalAlignment="Right" Height="78" Margin="0,0,399,169" VerticalAlignment="Bottom" Width="207" FontSize="36" Click="Add_button_Click"/>
         <Button x:Name="button1" Content="Reset" HorizontalAlignment="Left" Height="63" Margin="39,0,0,43" VerticalAlignment="Bottom" Width="252" FontSize="36" Click="button1_Click"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="63" Margin="0,0,51,43" VerticalAlignment="Bottom" Width="252" FontSize="36" Click="Submit_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="63" Margin="0,0,51,43" VerticalAlignment="Bottom" Width="252" FontSize="36" Click="Submit_Button_Click" IsEnabled="False"/>
         <Grid HorizontalAlignment="Right" Height="165.332" Margin="0,0,51,178.568" VerticalAlignment="Bottom" Width="183">
             <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
             <Label x:Name="label2" Content="Total Price" Height="42" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" FontStyle="Italic" Background="#FFFFD100"/>
             <Label x:Name="label2_Copy" Content="Total Price" Margin="0,42,0,81.332" FontSize="24" FontWeight="Bold" FontStyle="Italic" BorderBrush="Black" Background="White" BorderThickness="0,2"/>
-            <Label x:Name="label2_Copy1" Content="VAT 20%" Height="42" Margin="0,0,0,40.666" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" FontStyle="Italic" BorderBrush="Black" Background="White" BorderThickness="0,2"/>
+            <Label x:Name="label2_Copy1" Content="VAT 20%" Margin="0,82.666,0,40.666" FontSize="24" FontWeight="Bold" FontStyle="Italic" BorderBrush="Black" Background="White" BorderThickness="0,2"/>
             <Label x:Name="label2_Copy2" Content="Total Price" Height="42" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" FontStyle="Italic" BorderBrush="Black" Background="White" BorderThickness="0,2"/>
 
         </Grid>

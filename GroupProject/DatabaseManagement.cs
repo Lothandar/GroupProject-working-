@@ -18,9 +18,9 @@ namespace GroupProject
 
             MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
             conn_string.Server = "sql2.freemysqlhosting.net";
-            conn_string.UserID = "sql2231281";
-            conn_string.Password = "mA2*xJ5*";
-            conn_string.Database = "sql2231281";
+            conn_string.UserID = "sql2234208";
+            conn_string.Password = "pD7*eV4%";
+            conn_string.Database = "sql2234208";
             conn = new MySqlConnection(conn_string.ToString());
         }
 

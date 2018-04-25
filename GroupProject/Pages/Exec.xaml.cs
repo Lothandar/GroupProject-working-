@@ -30,7 +30,7 @@ namespace GroupProject.Pages
             
             SupplierListBox.Items.Add("Pick a Supplier");
             
-            List<List<string>> list = DatabaseManagement.SelectQuery("Select supplierName from sql2231281.supplier");
+            List<List<string>> list = DatabaseManagement.SelectQuery("Select supplierName from supplier");
             if (list.Count() == 0)
             {
                 SupplierListBox.Items.Add("No supplier in the database");
