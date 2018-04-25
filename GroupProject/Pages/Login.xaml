@@ -29,7 +29,7 @@
         </Label>
         <Button x:Name="Back_Button" Content="Button" HorizontalAlignment="Left" Margin="273,0,0,77.5" VerticalAlignment="Bottom" Width="123" Height="58.5" FontSize="36"/>
         <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Margin="0,0,271.5,77.5" VerticalAlignment="Bottom" Width="123" Height="58.5" FontSize="36" Click="Submit_Button_Click"/>
-        <Label x:Name="ErrorLabel" Content="Your UserName or password is Incorect" Margin="382,720,450,163" FontSize="36" Background="#FFA6A6A6" Visibility="Collapsed"/>
+        <Label x:Name="ErrorLabel" Content="Your UserName or password is incorrect " Margin="382,720,450,163" FontSize="36" Background="#FFA6A6A6" Visibility="Collapsed"/>
 
     </Grid>
 </UserControl>
