@@ -46,23 +46,22 @@ namespace GroupProject.Pages
             {
                 delivery = DatePick.DisplayDateStart.Value.ToString("yyyy-MM-dd");
             }
-                string query = "INSERT INTO Order (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES (" + DateTime.Today.ToString("yyyy-MM-dd") + delivery + label2_Copy2.Content.ToString() + SupplierId + "3" + "); ";
+                string query = "INSERT INTO `order` (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES ('" + DateTime.Today.ToString("yyyy-MM-dd") + "','"+ delivery +"','"+ label2_Copy2.Content.ToString() +"','"+ SupplierId + "','3'" + "); ";
             DatabaseManagement.Add(query);
 
-            query = "SELECT orderNo FROM order WHERE ID = (SELECT MAX(orderNo)  FROM order)";
+            query = "SELECT orderNo FROM `order` WHERE orderNo = (SELECT MAX(orderNo)  FROM `order`);";
             List<List<String>> order =DatabaseManagement.SelectQuery(query);
             List<String> orderID = order[0];
 
-            string values = "(";
             foreach (var item in OrderingItem)
             {
-                values += "'"+ item.ID +"',";
-                values += "'" + orderID[0] + "',";
-                values += "'" + item.Quantity + "'),";
-
+                query = "INSERT INTO `ItemsOrdered` (ItemID, OrderID, Quantity) VALUES ('"+ item.ID + "','"+ orderID[0]+ "','" + item.Quantity + "');";
+                DatabaseManagement.Add(query);
             }
-            query = "INSERT INTO ItemsOrdered (ItemID, OrderID, Quantity) VALUES ("+ values +");";
-            DatabaseManagement.Add(query);
+            MessageBox.Show("Order has been succesfully placed", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+
+            button1_Click(sender , e);
+
 
         }
 
@@ -99,7 +98,7 @@ namespace GroupProject.Pages
 
         private void Add_button_Click(object sender, RoutedEventArgs e)
         {
-            if (CheapOrFast.SelectedItem.ToString() != "Pick an Item" || ItemsListBox.SelectedItem.ToString() != "Search for" || ItemsListBox.SelectedItem.ToString() != "No Item in the database need to be Refilled")
+            if (( ItemsListBox.SelectedItem.ToString() != "Pick an Item" && ItemsListBox.SelectedItem.ToString() != "No Item in the database need to be Refilled") && CheapOrFast.SelectedItem.ToString() != "Search for"  )
             {
                 string query = string.Empty;
                 if (ItemsData.HasItems)  //has to change the check has it's not going through then
@@ -184,6 +183,14 @@ namespace GroupProject.Pages
                     });
 
                 }
+                double total = 0;
+                foreach(var item in OrderingItem)
+                {
+                    total += item.TotalPrice;
+                }
+                label2_Copy.Content = total;
+                double totalVat = total + (total * 0.20);
+                label2_Copy2.Content = totalVat;
                 ItemsListBox.Items.Remove(selected);
                 if (ItemsListBox.Items.Count == 1)
                 {
