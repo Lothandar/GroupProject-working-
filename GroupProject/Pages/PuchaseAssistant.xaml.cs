@@ -37,15 +37,16 @@ namespace GroupProject.Pages
             List<List<String>> supp = DatabaseManagement.SelectQuery("Select supplierID from supplier where supplierName = '" + label.Content.ToString() + "';");
             List<String> supplier = supp[0];
             string SupplierId = supplier[0];
-            if (DatePick.SelectedDate != null)
+            string delivery = "";
+            if (DatePick.SelectedDate.HasValue)
             {
-                DateTime delivery = DatePick.SelectedDate;
+                delivery =  DatePick.SelectedDate.Value.ToString("yyyy-MM-dd") ;
             }
             else
             {
-                DateTime delivery = DatePick.DisplayDateStart;
+                delivery = DatePick.DisplayDateStart.Value.ToString("yyyy-MM-dd");
             }
-                string query = "INSERT INTO Order (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES (" + DateTime.Today.ToString("yyyy-mm-dd") + DatePick.SelectedDate + label2_Copy2.Content.ToString() + SupplierId + "3" + "); ";
+                string query = "INSERT INTO Order (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES (" + DateTime.Today.ToString("yyyy-MM-dd") + delivery + label2_Copy2.Content.ToString() + SupplierId + "3" + "); ";
             DatabaseManagement.Add(query);
 
             query = "SELECT orderNo FROM order WHERE ID = (SELECT MAX(orderNo)  FROM order)";
@@ -98,7 +99,7 @@ namespace GroupProject.Pages
 
         private void Add_button_Click(object sender, RoutedEventArgs e)
         {
-            if (CheapOrFast.SelectedItem.ToString() != "Pick an Item" && ItemsListBox.SelectedItem.ToString() != "Search for" && ItemsListBox.SelectedItem.ToString() != "No Item in the database need to be Refilled")
+            if (CheapOrFast.SelectedItem.ToString() != "Pick an Item" || ItemsListBox.SelectedItem.ToString() != "Search for" || ItemsListBox.SelectedItem.ToString() != "No Item in the database need to be Refilled")
             {
                 string query = string.Empty;
                 if (ItemsData.HasItems)  //has to change the check has it's not going through then
