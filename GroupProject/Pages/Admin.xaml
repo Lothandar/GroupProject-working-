@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GroupProject.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" Width="1500" Initialized="UserControl_Initialized">
+             d:DesignHeight="500" Width="750" Initialized="UserControl_Initialized">
     <Grid>
-        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" Height="276.666" Margin="0,10,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="392"/>
+        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" Height="142.666" Margin="0,10,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="204" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
         <Button x:Name="Logout_button" Content="Logout" HorizontalAlignment="Left" Height="67.5" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" FontSize="11" Click="Logout_button_Click"/>
         <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="54" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="113.334" Click="Submit_Button_Click"/>
         <Button x:Name="Executive_Button" Content="Executive" HorizontalAlignment="Left" Margin="10,0,0,10" Width="116" Click="Executive_Button_Click" Height="54" VerticalAlignment="Bottom"/>
-        <Grid Margin="132,174,461,285">
+        <Grid Margin="46,121.609,267,147.391" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment">
             <TreeView x:Name="treeView" Margin="0,44,0,0" Style="{DynamicResource SimpleTreeView}"/>
             <TextBox x:Name="textBox" Height="39" Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" Text="Orders Awaiting Authorisation" VerticalAlignment="Top" Background="#FFEAD827" BorderBrush="{x:Null}" FontSize="26"/>
 

@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GroupProject.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1500" Initialized="UserControl_Initialized">
+             d:DesignHeight="500" d:DesignWidth="750" Initialized="UserControl_Initialized">
     <Grid>
-        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" HorizontalAlignment="Right" Height="245.667" Margin="0,0,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" Width="327.333"/>
+        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" HorizontalAlignment="Right" Height="139.667" Margin="0,0,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" Width="183.333"/>
         <Button x:Name="Logout_Button" Content="Logout" HorizontalAlignment="Left" Height="48.667" Margin="10,0,0,0" VerticalAlignment="Top" Width="140.111" Grid.Row="1" Grid.Column="1" FontSize="22" Click="Logout_Button_Click"/>
-        <Button x:Name="Admin_Button" Content="Admin" HorizontalAlignment="Left" Height="54" Margin="10,0,0,40" VerticalAlignment="Bottom" Width="203" FontSize="24" Click="Admin_Button_Click"/>
-        <ComboBox x:Name="SupplierListBox" HorizontalAlignment="Left" Height="66" Margin="186,96,0,0" VerticalAlignment="Top" Width="411" IsEditable="True" BorderThickness="1,1,1,0" SelectionChanged="SupplierListBox_SelectionChanged"/>
-        <DataGrid x:Name="SupplierData" Margin="104,268,218,286" SelectedIndex="2" IsReadOnly="True"/>
-        <Button x:Name="Update" Content="Update supplier Table" HorizontalAlignment="Left" Height="46" Margin="104,0,0,198" VerticalAlignment="Bottom" Width="345" FontSize="22" Click="Update_Click" IsEnabled="False"/>
-        <Button x:Name="button_Copy" Content="Add a Supplier" Height="46" Margin="523,0,632,198" VerticalAlignment="Bottom" FontSize="22" Click="button_Copy_Click"/>
-        <Button x:Name="Delete_Button" Content="Delete a Supplier" Height="46" Margin="0,0,218,198" VerticalAlignment="Bottom" FontSize="22" HorizontalAlignment="Right" Width="345" Click="Delete_Button_Click" IsEnabled="False"/>
+        <Button x:Name="Admin_Button" Content="Admin" HorizontalAlignment="Left" Height="43.784" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="140.111" FontSize="24" Click="Admin_Button_Click"/>
+        <ComboBox x:Name="SupplierListBox" HorizontalAlignment="Left" Height="56" Margin="68,83.667,0,0" VerticalAlignment="Top" Width="233.667" IsEditable="True" BorderThickness="1,1,1,0" SelectionChanged="SupplierListBox_SelectionChanged" d:LayoutOverrides="HorizontalAlignment"/>
+        <DataGrid x:Name="SupplierData" Margin="100,166,216,155.216" SelectedIndex="2" IsReadOnly="True" d:LayoutOverrides="VerticalAlignment"/>
+        <Button x:Name="Update" Content="Update supplier Table" HorizontalAlignment="Left" Height="46" Margin="10,0,0,82.216" VerticalAlignment="Bottom" Width="243" FontSize="22" Click="Update_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="button_Copy" Content="Add a Supplier" Height="46" Margin="283,0,277,82.216" VerticalAlignment="Bottom" FontSize="22" Click="button_Copy_Click" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="Delete_Button" Content="Delete a Supplier" Height="46" Margin="0,0,10,82.216" VerticalAlignment="Bottom" FontSize="22" HorizontalAlignment="Right" Width="217" Click="Delete_Button_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
         <Button x:Name="Cancel_Button" Content="Cancel" Height="78" Margin="422,0,733,50.216" VerticalAlignment="Bottom" FontSize="22" Click="Cancel_Click" IsEnabled="False"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="78" Margin="0,0,67,50.216" VerticalAlignment="Bottom" Width="345" FontSize="22" Click="Submit_Button1" IsEnabled="False"/>
+        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="43.784" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="160" FontSize="22" Click="Submit_Button1" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
 
     </Grid>
 </UserControl>

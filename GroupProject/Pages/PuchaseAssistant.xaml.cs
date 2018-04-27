@@ -34,16 +34,35 @@ namespace GroupProject.Pages
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
             //Create the Order
-            var itemsSource = ItemsData.ItemsSource;
-            foreach (var item in itemsSource)
+            List<List<String>> supp = DatabaseManagement.SelectQuery("Select supplierID from supplier where supplierName = '" + label.Content.ToString() + "';");
+            List<String> supplier = supp[0];
+            string SupplierId = supplier[0];
+            if (DatePick.SelectedDate != null)
             {
-                item.ToString();
+                DateTime delivery = DatePick.SelectedDate;
             }
-            DateTime dateTime = DateTime.UtcNow.Date;
-            string date = dateTime.ToString("dd/MM/yyyy");
-            string values = "3";
-            string query = "INSERT INTO table_name (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES(" + values + "); ";
+            else
+            {
+                DateTime delivery = DatePick.DisplayDateStart;
+            }
+                string query = "INSERT INTO Order (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES (" + DateTime.Today.ToString("yyyy-mm-dd") + DatePick.SelectedDate + label2_Copy2.Content.ToString() + SupplierId + "3" + "); ";
             DatabaseManagement.Add(query);
+
+            query = "SELECT orderNo FROM order WHERE ID = (SELECT MAX(orderNo)  FROM order)";
+            List<List<String>> order =DatabaseManagement.SelectQuery(query);
+            List<String> orderID = order[0];
+
+            string values = "(";
+            foreach (var item in OrderingItem)
+            {
+                values += "'"+ item.ID +"',";
+                values += "'" + orderID[0] + "',";
+                values += "'" + item.Quantity + "'),";
+
+            }
+            query = "INSERT INTO ItemsOrdered (ItemID, OrderID, Quantity) VALUES ("+ values +");";
+            DatabaseManagement.Add(query);
+
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
@@ -79,12 +98,12 @@ namespace GroupProject.Pages
 
         private void Add_button_Click(object sender, RoutedEventArgs e)
         {
-            if (CheapOrFast.SelectedItem.ToString() != "Pick an Item" && ItemsListBox.SelectedItem.ToString() != "Search for")
+            if (CheapOrFast.SelectedItem.ToString() != "Pick an Item" && ItemsListBox.SelectedItem.ToString() != "Search for" && ItemsListBox.SelectedItem.ToString() != "No Item in the database need to be Refilled")
             {
                 string query = string.Empty;
                 if (ItemsData.HasItems)  //has to change the check has it's not going through then
                 {
-                    query = "Select supplierprice.* from supplierprice, garden, supplier where supplierprice.itemid = garden.itemId and garden.itemId = (Select garden.itemId from garden where garden.title = '" + label.Content.ToString() + "' and supplierprice.supplierID = supplier.supplierID and supplier.supplierID = (select supplier.supplierID from supplier where supplier.suppliername = '" + ItemsListBox.SelectedItem.ToString() + "'";
+                    query = "Select currentPrice, supplierprice.itemId, garden.title, supplierprice.supplierID, supplierName, deliveryDays from supplierprice, garden, supplier where supplierprice.itemid = garden.itemId and garden.itemId = (Select garden.itemId from garden where garden.title = '" + ItemsListBox.SelectedItem.ToString() + "') and supplierprice.supplierID = supplier.supplierID and supplier.supplierID = (select supplier.supplierID from supplier where supplier.suppliername = '" + label.Content.ToString() + "') Limit 1 ";
                 }
                 else
                 {
@@ -96,19 +115,23 @@ namespace GroupProject.Pages
                     }
                     else
                     {
-                        query = "SELECT MIN(deliveryDays) as shortest, itemid, SupplierID, currentPrice FROM supplierprice GROUP By currentPrice, SupplierID, itemid ASC LIMIT 1";
+                        query = "SELECT currentPrice , itemid, garden.title, SupplierID, supplierName, MIN(deliveryDays) as shortest  FROM supplierprice, garden, supplier GROUP By currentPrice, SupplierID, itemid ASC LIMIT 1";
                     }
 
-                    List<List<String>> list = DatabaseManagement.SelectQuery(query);
-                    List<string> littlelist = new List<string>();
-                    try
-                    {
-                        littlelist = list[0];
-                    }
-                    catch
-                    {
+                }
+                string selected = ItemsListBox.SelectedItem.ToString();
+                List<List<String>> list = DatabaseManagement.SelectQuery(query);
+                List<string> littlelist = new List<string>();
+                try
+                {
+                    littlelist = list[0];
+                }
+                catch
+                {
 
-                    }
+                }
+                if (!ItemsData.HasItems)
+                {
                     label.Content = littlelist[4];
 
                     ItemsListBox.Items.Clear();
@@ -129,22 +152,49 @@ namespace GroupProject.Pages
                                 ItemsListBox.Items.Add(item);
                             }
                         }
-
-                        OrderingItem.Add(new PurchaseItems()
-                        {
-                            ID = Int64.Parse(littlelist[1]),
-                            Name = littlelist[2],
-                            Price = double.Parse(littlelist[0]),
-                            Quantity = 1,
-                            DeliveryTime = int.Parse(littlelist[5]),
-                            TotalPrice = double.Parse(littlelist[0]) * 1
-                        });
-                        ItemsData.ItemsSource = OrderingItem;
-
                     }
+                    OrderingItem.Add(new PurchaseItems()
+                    {
+                        ID = Int64.Parse(littlelist[1]),
+                        Name = littlelist[2],
+                        Price = double.Parse(littlelist[0]),
+                        Quantity = 1,
+                        DeliveryTime = int.Parse(littlelist[5]),
+                        TotalPrice = double.Parse(littlelist[0]) * 1
+                    });
 
-                    DatabaseManagement.SelectQuery(query);
+                    Submit_Button.IsEnabled = true;
+                    DateTime MinDay = DateTime.Today.Date;
+                    MinDay = MinDay.AddDays(int.Parse(littlelist[5]));
+                    DatePick.DisplayDateStart = MinDay;
+                    DatePick.DisplayDate = MinDay;
+                    
                 }
+                else
+                {
+                    OrderingItem.Add(new PurchaseItems()
+                    {
+                        ID = Int64.Parse(littlelist[1]),
+                        Name = littlelist[2],
+                        Price = double.Parse(littlelist[0]),
+                        Quantity = 1,
+                        DeliveryTime = int.Parse(littlelist[5]),
+                        TotalPrice = double.Parse(littlelist[0]) * 1
+                    });
+
+                }
+                ItemsListBox.Items.Remove(selected);
+                if (ItemsListBox.Items.Count == 1)
+                {
+                    ItemsListBox.Items.Add("No Item in the database need to be Refilled");
+                }
+                ItemsData.ItemsSource = OrderingItem;
+                ItemsData.Items.Refresh();
+            
+                   
+                    ItemsListBox.SelectedItem = "Pick an Item";
+                    
+                
 
             }
         }
@@ -153,6 +203,7 @@ namespace GroupProject.Pages
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ItemsData.ItemsSource = null;
+            OrderingItem = null;
             label.Content = "Current Supplier";
 
             ItemsListBox.Items.Add("Pick an Item");
