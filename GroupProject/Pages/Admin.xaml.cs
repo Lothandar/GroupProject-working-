@@ -44,7 +44,9 @@ namespace GroupProject.Pages
                 {
                     string query = "UPDATE `order` SET Authorized = true WHERE id = '"+order.ID+"'";
                 }
-                InitializeComponent();
+                UserControl_Initialized(sender, e);
+                MessageBox.Show("Theses Orders has been authorized successfully ", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+
             }
         }
 

@@ -166,6 +166,9 @@ namespace GroupProject.Pages
                 Update.IsEnabled = true;
                 Submit_Button.IsEnabled = false;
                 Cancel_Button.IsEnabled = false;
+
+                //foreach ()
+                //string Query
             }
 
 
