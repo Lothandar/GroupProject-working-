@@ -21,6 +21,7 @@ namespace GroupProject.Pages
     public partial class Warehouse : UserControl
     {
         List<orderedItem> orderItems = new List<orderedItem>();
+        List<ItemsOrdered> orderedItems = new List<ItemsOrdered>();
         public Warehouse()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace GroupProject.Pages
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where DeliveryDate <= '"+DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
+            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where Authorized = '1' and DeliveryDate <= '"+DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
             List<List<string>> list = DatabaseManagement.SelectQuery(query);
             foreach (List<string> littlelist in list)
             {
@@ -43,6 +44,59 @@ namespace GroupProject.Pages
             }
             Orders.ItemsSource = orderItems;
         }
+
+        private void Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string query = "Select `ItemsOrdered`.* from `ItemsOrdered`, `order` Where `ItemsOrdered`.OrderID = `order`.orderNo and `order`.orderNo ='" + orderItems[Orders.SelectedIndex].ID + "'";
+                List<List<string>> list = DatabaseManagement.SelectQuery(query);
+                foreach (List<string> littlelist in list)
+                {
+                    orderedItems.Add(new ItemsOrdered()
+                    {
+                        ItemID = Int64.Parse(littlelist[0]),
+                        OrderID = Int64.Parse(littlelist[1]),
+                        Quantity = int.Parse(littlelist[2])
+
+                    });
+                }
+                OrdersItems.ItemsSource = orderedItems;
+                Submit_Button.IsEnabled = false;
+            }
+            catch
+            {
+
+            }   
+         }
+
+        private void Logout_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Index());
+        }
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersItems.ItemsSource = null;
+            Orders.ItemsSource = null;
+            Submit_Button.IsEnabled = false;
+            orderItems = new List<orderedItem>();
+            orderedItems = new List<ItemsOrdered>();
+        }
+
+        private void Submit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in orderedItems)
+            {
+                string Query = "INSERT INTO `delivery` (orderID, itemID, deliveredDate, Damaged, missing) VALUES('"+item.OrderID+"','"+item.ItemID+"','"+DateTime.Today.ToString("yyyy-MM-dd")+"','"+ item.Dammaged +"','"+item.Missing+"'); ";
+                DatabaseManagement.Add(Query);
+                Query = "Update `garden` set StockLever += '"+(item.Quantity - item.Dammaged -item.Missing)+"' where itemId ='"+item.ItemID+"'";
+                DatabaseManagement.Update(Query);
+            }
+            string query = "Update `order` set delivered = 1 where orderNo =" + orderItems[Orders.SelectedIndex].ID;
+            DatabaseManagement.Update(query);
+                Cancel_Button_Click(sender, e);
+        }
     }
     public class orderedItem
     {
@@ -50,7 +104,13 @@ namespace GroupProject.Pages
         public Int64 ID { get; set; }
         public double Price { get; set; }
         public string ExpectedDelivery { get; set; }
-        
-
-}
+    }
+    public class ItemsOrdered
+    {
+        public Int64 ItemID{ get; set; }
+        public Int64 OrderID { get; set; }
+        public int Quantity { get; set; }
+        public int Dammaged { get; set; }
+        public int Missing { get; set; }
+    }   
 }
