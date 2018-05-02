@@ -29,7 +29,7 @@ namespace GroupProject.Pages
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where Authorized = '1' and delivered != '1' and DeliveryDate <= '"+DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
+            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where Authorized and (delivered is null or not delivered) and DeliveryDate <= '" + DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
             List<List<string>> list = DatabaseManagement.SelectQuery(query);
             foreach (List<string> littlelist in list)
             {
