@@ -20,6 +20,7 @@ namespace GroupProject.Pages
     /// </summary>
     public partial class Admin : UserControl
     {
+        List<OrderedItem> OrderedItems = new List<OrderedItem>();
         public Admin()
         {
             InitializeComponent();
@@ -37,14 +38,47 @@ namespace GroupProject.Pages
 
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach(OrderedItem order in OrderedItems)
+            {
+                if(order.Authorized)
+                {
+                    string query = "UPDATE `order` SET Authorized = true WHERE id = '"+order.ID+"'";
+                }
+                InitializeComponent();
+            }
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            string query = "Select * FROM ";
+            string query = "Select * FROM `order`, `supplier` Where Authorized = false And supplierNo = supplier.supplierID; ";
             List<List<string>> list = DatabaseManagement.SelectQuery(query);
-            
+
+            if(list.Count() != 0)
+            {
+
+           
+            foreach(List<string> littlelist in list)
+            {
+                OrderedItems.Add(new OrderedItem {
+                    ID = Int64.Parse(littlelist[0]),
+                    Price = double.Parse(littlelist[1]),
+                    OrderDate = littlelist[4],
+                    DeliveryDate = littlelist[5],
+                    Supplier = littlelist[7],
+                    Authorized = false
+                });
+            }
+            OrderData.ItemsSource = OrderedItems;
+            }
         }
+    }
+    public class OrderedItem
+    {
+        public Int64 ID { get; set; }
+        public double Price { get; set; }
+        public string Supplier { get; set; }
+        public string OrderDate { get; set; }
+        public string DeliveryDate { get; set; }
+        public bool Authorized { get; set; }
     }
 }

@@ -1,22 +1,27 @@
-﻿<UserControl x:Class="GroupProject.Pages.Admin"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GroupProject.Pages"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="GroupProject.Pages.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="500" Width="750" Initialized="UserControl_Initialized">
     <Grid>
-        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" Height="142.666" Margin="0,10,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="204" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+        <DataGrid x:Name="OrderData_Copy" Margin="0,184,37,106" HorizontalAlignment="Right" Width="209">
+            <System:String>Button</System:String>
+        </DataGrid>
+
+        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" Height="142.666" Margin="0,10,18,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="204" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
         <Button x:Name="Logout_button" Content="Logout" HorizontalAlignment="Left" Height="67.5" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" FontSize="11" Click="Logout_button_Click"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="54" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="113.334" Click="Submit_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="54" Margin="0,0,22,10" VerticalAlignment="Bottom" Width="113.334" Click="Submit_Button_Click"/>
         <Button x:Name="Executive_Button" Content="Executive" HorizontalAlignment="Left" Margin="10,0,0,10" Width="116" Click="Executive_Button_Click" Height="54" VerticalAlignment="Bottom"/>
-        <Grid Margin="46,121.609,267,147.391" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment">
-            <TreeView x:Name="treeView" Margin="0,44,0,0" Style="{DynamicResource SimpleTreeView}"/>
+        <Grid Margin="46,121.609,329,139.391" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment">
             <TextBox x:Name="textBox" Height="39" Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" Text="Orders Awaiting Authorisation" VerticalAlignment="Top" Background="#FFEAD827" BorderBrush="{x:Null}" FontSize="26"/>
+            <DataGrid x:Name="OrderData" Margin="0,39,0,10"/>
 
         </Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="132,787,0,0" VerticalAlignment="Top" Width="146" Height="45"/>
+        <Button x:Name="button" HorizontalAlignment="Left" Margin="132,787,0,0" VerticalAlignment="Top" Width="146" Height="45"/>
 
     </Grid>
 </UserControl>

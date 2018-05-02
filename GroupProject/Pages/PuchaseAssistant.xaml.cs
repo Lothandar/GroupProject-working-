@@ -46,7 +46,7 @@ namespace GroupProject.Pages
             {
                 delivery = DatePick.DisplayDateStart.Value.ToString("yyyy-MM-dd");
             }
-                string query = "INSERT INTO `order` (orderDate, deliveryDate, paid, supplierNo, EmployeeNo) VALUES ('" + DateTime.Today.ToString("yyyy-MM-dd") + "','"+ delivery +"','"+ label2_Copy2.Content.ToString() +"','"+ SupplierId + "','3'" + "); ";
+                string query = "INSERT INTO `order` (orderDate, deliveryDate, paid, supplierNo, EmployeeNo, Authorized) VALUES ('" + DateTime.Today.ToString("yyyy-MM-dd") + "','"+ delivery +"','"+ label2_Copy2.Content.ToString() +"','"+ SupplierId + "','3', '0'" + "); ";
             DatabaseManagement.Add(query);
 
             query = "SELECT orderNo FROM `order` WHERE orderNo = (SELECT MAX(orderNo)  FROM `order`);";
@@ -211,7 +211,7 @@ namespace GroupProject.Pages
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ItemsData.ItemsSource = null;
-            OrderingItem = null;
+            OrderingItem = new List<PurchaseItems>();
             label.Content = "Current Supplier";
 
             ItemsListBox.Items.Add("Pick an Item");
@@ -219,7 +219,7 @@ namespace GroupProject.Pages
             ItemsListBox.Items.Clear();
 
             List<List<string>> list = DatabaseManagement.SelectQuery("Select title from garden WHERE StockLevel < ReorderLevel");
-            if (list.Count() == 0)
+            if (list.Count() == 0)  
             {
                 ItemsListBox.Items.Add("No Item in the database need to be Refilled");
             }
@@ -235,6 +235,7 @@ namespace GroupProject.Pages
                 //SupplierListBox.Items.Add(list.Count());
             }
             ItemsListBox.SelectedItem = "Pick an Item";
+            
         }
     }
     public class PurchaseItems
