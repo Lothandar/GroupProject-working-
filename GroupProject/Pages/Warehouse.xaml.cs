@@ -29,7 +29,7 @@ namespace GroupProject.Pages
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where Authorized = '1' and DeliveryDate <= '"+DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
+            string query = "Select `order`.* , supplier.supplierName FROM `order`, `supplier` Where Authorized = '1' and delivered != '1' and DeliveryDate <= '"+DateTime.Today.ToString("yyyy-MM-dd")+"' And supplierNo = supplier.supplierID;";
             List<List<string>> list = DatabaseManagement.SelectQuery(query);
             foreach (List<string> littlelist in list)
             {
@@ -95,7 +95,7 @@ namespace GroupProject.Pages
             }
             string query = "Update `order` set delivered = 1 where orderNo =" + orderItems[Orders.SelectedIndex].ID;
             DatabaseManagement.Update(query);
-                Cancel_Button_Click(sender, e);
+            Cancel_Button_Click(sender, e);
         }
     }
     public class orderedItem

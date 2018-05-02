@@ -7,16 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="750" Initialized="UserControl_Initialized">
     <Grid>
-        <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" HorizontalAlignment="Right" Height="139.667" Margin="0,0,10,0" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" Width="183.333"/>
-        <Button x:Name="Logout_Button" Content="Logout" HorizontalAlignment="Left" Height="48.667" Margin="10,0,0,0" VerticalAlignment="Top" Width="140.111" Grid.Row="1" Grid.Column="1" FontSize="22" Click="Logout_Button_Click"/>
-        <Button x:Name="Admin_Button" Content="Admin" HorizontalAlignment="Left" Height="43.784" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="140.111" FontSize="24" Click="Admin_Button_Click"/>
-        <ComboBox x:Name="SupplierListBox" HorizontalAlignment="Left" Height="56" Margin="68,83.667,0,0" VerticalAlignment="Top" Width="233.667" IsEditable="True" BorderThickness="1,1,1,0" SelectionChanged="SupplierListBox_SelectionChanged" d:LayoutOverrides="HorizontalAlignment"/>
-        <DataGrid x:Name="SupplierData" Margin="100,166,216,155.216" SelectedIndex="2" IsReadOnly="True" d:LayoutOverrides="VerticalAlignment"/>
-        <Button x:Name="Update" Content="Update supplier Table" HorizontalAlignment="Left" Height="46" Margin="10,0,0,82.216" VerticalAlignment="Bottom" Width="243" FontSize="22" Click="Update_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
-        <Button x:Name="button_Copy" Content="Add a Supplier" Height="46" Margin="283,0,277,82.216" VerticalAlignment="Bottom" FontSize="22" Click="button_Copy_Click" d:LayoutOverrides="HorizontalAlignment"/>
-        <Button x:Name="Delete_Button" Content="Delete a Supplier" Height="46" Margin="0,0,10,82.216" VerticalAlignment="Bottom" FontSize="22" HorizontalAlignment="Right" Width="217" Click="Delete_Button_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" Height="78" Margin="422,0,733,50.216" VerticalAlignment="Bottom" FontSize="22" Click="Cancel_Click" IsEnabled="False"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="43.784" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="160" FontSize="22" Click="Submit_Button1" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
 
+        <Grid x:Name="Main" Margin="10,0,10,10">
+
+            <Image x:Name="___GroupProject_component_Final_logo_for_group_project_jpg" HorizontalAlignment="Right" Height="139.667" Source="/GroupProject;component/Final_logo_for_group_project.jpg" Stretch="Fill" VerticalAlignment="Top" Width="183.333"/>
+            <Button x:Name="Logout_Button" Content="Logout" HorizontalAlignment="Left" Height="48.667" VerticalAlignment="Top" Width="140.111" FontSize="22" Click="Logout_Button_Click"/>
+            <Button x:Name="Admin_Button" Content="Admin" HorizontalAlignment="Left" Height="43.784" VerticalAlignment="Bottom" Width="140.111" FontSize="24" Click="Admin_Button_Click"/>
+            <ComboBox x:Name="SupplierListBox" HorizontalAlignment="Left" Height="56" Margin="58,83.667,0,0" VerticalAlignment="Top" Width="233.667" IsEditable="True" BorderThickness="1,1,1,0" SelectionChanged="SupplierListBox_SelectionChanged" d:LayoutOverrides="HorizontalAlignment"/>
+            <DataGrid x:Name="SupplierData" Margin="90,166,206,145.216" SelectedIndex="2" IsReadOnly="True" d:LayoutOverrides="VerticalAlignment"/>
+            <Button x:Name="Update" Content="Update supplier Table" HorizontalAlignment="Left" Height="46" Margin="0,0,0,72.216" VerticalAlignment="Bottom" Width="243" FontSize="22" Click="Update_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
+            <Button x:Name="button_Copy" Content="Add a Supplier" Height="46" Margin="273,0,267,72.216" VerticalAlignment="Bottom" FontSize="22" Click="button_Copy_Click" d:LayoutOverrides="HorizontalAlignment"/>
+            <Button x:Name="Delete_Button" Content="Delete a Supplier" Height="46" Margin="0,0,0,72.216" VerticalAlignment="Bottom" FontSize="22" HorizontalAlignment="Right" Width="217" Click="Delete_Button_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
+            <Button x:Name="Cancel_Button" Content="Cancel" Height="78" Margin="412,0,318,40.216" VerticalAlignment="Bottom" FontSize="22" Click="Cancel_Click" IsEnabled="False"/>
+            <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="43.784" VerticalAlignment="Bottom" Width="160" FontSize="22" Click="Submit_Button1" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
+
+        </Grid>
+
+        <Grid x:Name="NewSupplier" Visibility="Collapsed">
+            <Grid Background="Black" Opacity="0.5"/>
+            <Border
+            MinWidth="250"
+            Background="Orange" 
+            BorderBrush="Black" 
+            BorderThickness="1" 
+            CornerRadius="0,55,0,55" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Margin="5" Text="Supplier Name:" FontWeight="Bold" FontFamily="Cambria" />
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="SupplierTextBox"/>
+                    <TextBlock Margin="5" Text="Supplier Postal:" FontWeight="Bold" FontFamily="Cambria" />
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="PostalTextBox"/>
+                    <TextBlock Margin="5" Text="Supplier location:" FontWeight="Bold" FontFamily="Cambria" />
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="locationTextBox"/>
+                    <TextBlock Margin="5" Text="Supplier Country:" FontWeight="Bold" FontFamily="Cambria" />
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CountryTextBox"/>
+                    <TextBlock Margin="5" Text="Supplier Delivery:" FontWeight="Bold" FontFamily="Cambria" />
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="DeliveryTextBox"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="NoButton" Margin="5" Content="Cancel" Background="{x:Null}" Click="NoButton_Click" />
+                        <Button x:Name="YesButton" Margin="5" Content="Submit" Background="{x:Null}" Click="YesButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

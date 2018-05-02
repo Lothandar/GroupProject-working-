@@ -173,9 +173,34 @@ namespace GroupProject.Pages
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            //add a supplier
-            string query = "INSERT INTO supplier (supplierName, postalCode, location, country, deliveryDays) VALUES" ;
-            DatabaseManagement.Add(query);
+            NewSupplier.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SupplierTextBox.Text == null || PostalTextBox.Text == null || locationTextBox.Text == null || CountryTextBox.Text == null || DeliveryTextBox.Text == null)
+            {
+                //add a supplier
+                string query = "INSERT INTO supplier (supplierName, postalCode, location, country, deliveryDays) VALUES('" + SupplierTextBox.Text + "','" + PostalTextBox.Text + "','" + locationTextBox.Text + "','" + CountryTextBox.Text + "','" + DeliveryTextBox.Text + "');";
+                DatabaseManagement.Add(query);
+                SupplierTextBox.Text = null;
+                PostalTextBox.Text = null;
+                locationTextBox.Text = null;
+                CountryTextBox.Text = null;
+                DeliveryTextBox.Text = null;
+                NewSupplier.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            SupplierTextBox.Text = null;
+            PostalTextBox.Text = null;
+            locationTextBox.Text = null;
+            CountryTextBox.Text = null;
+            DeliveryTextBox.Text = null;
+            NewSupplier.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
     public class SupplierItems
