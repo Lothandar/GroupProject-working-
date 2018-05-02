@@ -22,7 +22,7 @@
         </PasswordBox>
         <TextBox x:Name="UserName" Margin="261,180.437,263,268.063" TextWrapping="Wrap" FontSize="36" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="HorizontalAlignment"/>
         <Label x:Name="label1" Tag="Forget your password?" Height="42" Margin="340.5,0,193.5,37.5" VerticalAlignment="Bottom" FontSize="20" FontStyle="Italic" FontWeight="Bold" d:LayoutOverrides="HorizontalAlignment"/>
-        <Button x:Name="Back_Button" Content="Button" HorizontalAlignment="Left" Margin="56,0,0,37.5" VerticalAlignment="Bottom" Width="123" Height="58.5" FontSize="36" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="Back_Button" Content="Back" HorizontalAlignment="Left" Margin="56,0,0,37.5" VerticalAlignment="Bottom" Width="123" Height="58.5" FontSize="36" d:LayoutOverrides="HorizontalAlignment" Click="Back_Button_Click"/>
         <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Margin="0,0,39.5,37.5" VerticalAlignment="Bottom" Width="123" Height="58.5" FontSize="36" Click="Submit_Button_Click" d:LayoutOverrides="HorizontalAlignment"/>
         <Label x:Name="ErrorLabel" Content="Your UserName or password is incorrect " Margin="54.5,315,43.5,119" FontSize="36" Background="#FFA6A6A6" d:LayoutOverrides="HorizontalAlignment" Visibility="Collapsed"/>
 

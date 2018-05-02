@@ -115,7 +115,7 @@ namespace GroupProject.Pages
                     }
                     else
                     {
-                        query = "SELECT currentPrice , itemid, garden.title, SupplierID, supplierName, MIN(deliveryDays) as shortest  FROM supplierprice, garden, supplier GROUP By currentPrice, SupplierID, itemid ASC LIMIT 1";
+                        query = "SELECT currentPrice , supplierprice.itemid, garden.title, supplierprice.SupplierID, supplierName, MIN(deliveryDays) as shortest  FROM supplierprice, garden, supplier where supplierprice.itemId = garden.itemId and garden.title =  '" + ItemsListBox.SelectedItem.ToString() + "' and supplierprice.supplierID = supplier.supplierID  GROUP By currentPrice, SupplierID, itemid ASC LIMIT 1;";
                     }
 
                 }

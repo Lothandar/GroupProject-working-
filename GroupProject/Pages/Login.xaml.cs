@@ -68,5 +68,10 @@ namespace GroupProject.Pages
                 ErrorLabel.Visibility = Visibility.Visible;
             }*/
         }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Index());
+        }
     }
 }
