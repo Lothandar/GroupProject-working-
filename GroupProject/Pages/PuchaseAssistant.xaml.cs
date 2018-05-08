@@ -49,7 +49,7 @@ namespace GroupProject.Pages
                 string query = "INSERT INTO `order` (orderDate, deliveryDate, paid, supplierNo, EmployeeNo, Authorized) VALUES ('" + DateTime.Today.ToString("yyyy-MM-dd") + "','"+ delivery +"','"+ label2_Copy2.Content.ToString() +"','"+ SupplierId + "','3', '0'" + "); ";
             DatabaseManagement.Add(query);
 
-            query = "SELECT orderNo FROM `order` WHERE orderNo = (SELECT MAX(orderNo)  FROM `order`);";
+            query = "SELECT orderNo FROM `order` WHERE orderNo = (SELECT max(orderNo)  FROM `order`);";
             List<List<String>> order =DatabaseManagement.SelectQuery(query);
             List<String> orderID = order[0];
 

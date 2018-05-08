@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" Width="750" Initialized="UserControl_Initialized">
     <Grid>
-        <DataGrid x:Name="OrderData_Copy" Margin="0,184,37,106" HorizontalAlignment="Right" Width="209">
+        <DataGrid x:Name="ItemsData" Margin="0,178,22,112" HorizontalAlignment="Right" Width="253">
             <System:String>Button</System:String>
         </DataGrid>
 
@@ -18,7 +18,7 @@
         <Button x:Name="Executive_Button" Content="Executive" HorizontalAlignment="Left" Margin="10,0,0,10" Width="116" Click="Executive_Button_Click" Height="54" VerticalAlignment="Bottom"/>
         <Grid Margin="46,121.609,329,139.391" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment">
             <TextBox x:Name="textBox" Height="39" Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" Text="Orders Awaiting Authorisation" VerticalAlignment="Top" Background="#FFEAD827" BorderBrush="{x:Null}" FontSize="26"/>
-            <DataGrid x:Name="OrderData" Margin="0,39,0,10"/>
+            <DataGrid x:Name="OrderData" Margin="0,39,0,10" SelectionChanged="OrderData_SelectionChanged"/>
 
         </Grid>
         <Button x:Name="button" HorizontalAlignment="Left" Margin="132,787,0,0" VerticalAlignment="Top" Width="146" Height="45"/>

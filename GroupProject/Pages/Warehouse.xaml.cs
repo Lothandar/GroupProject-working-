@@ -62,7 +62,7 @@ namespace GroupProject.Pages
                     });
                 }
                 OrdersItems.ItemsSource = orderedItems;
-                Submit_Button.IsEnabled = false;
+                Submit_Button.IsEnabled = true;
             }
             catch
             {
@@ -78,9 +78,8 @@ namespace GroupProject.Pages
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             OrdersItems.ItemsSource = null;
-            Orders.ItemsSource = null;
             Submit_Button.IsEnabled = false;
-            orderItems = new List<orderedItem>();
+            
             orderedItems = new List<ItemsOrdered>();
         }
 
