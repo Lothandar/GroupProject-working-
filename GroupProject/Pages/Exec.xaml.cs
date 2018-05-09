@@ -168,7 +168,7 @@ namespace GroupProject.Pages
                 Cancel_Button.IsEnabled = false;
 
                 //foreach ()
-                //string Query
+                //string Query = "Update "
             }
 
 

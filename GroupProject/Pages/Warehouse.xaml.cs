@@ -90,7 +90,7 @@ namespace GroupProject.Pages
             {
                 string Query = "INSERT INTO `delivery` (orderID, itemID, deliveredDate, Damaged, missing) VALUES('"+item.OrderID+"','"+item.ItemID+"','"+DateTime.Today.ToString("yyyy-MM-dd")+"','"+ item.Dammaged +"','"+item.Missing+"'); ";
                 DatabaseManagement.Add(Query);
-                Query = "Update `garden` set StockLever = 'StockLever + " + (item.Quantity - item.Dammaged -item.Missing)+"' where itemId ='"+item.ItemID+"'";
+                Query = "Update `garden` set StockLevel = 'StockLevel + " + (item.Quantity - item.Dammaged -item.Missing)+"' where itemId ='"+item.ItemID+"'";
                 DatabaseManagement.Update(Query);
             }
             string query = "Update `order` set delivered = 1 where orderNo =" + orderItems[Orders.SelectedIndex].ID;
