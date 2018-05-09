@@ -181,7 +181,7 @@ namespace GroupProject.Pages
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SupplierTextBox.Text != null && PostalTextBox.Text != null && locationTextBox.Text != null && CountryTextBox.Text != null && DeliveryTextBox.Text != null)
+            if (SupplierTextBox.Text != string.Empty && PostalTextBox.Text != string.Empty && locationTextBox.Text != string.Empty && CountryTextBox.Text != string.Empty && DeliveryTextBox.Text != string.Empty)
             {
                 //add a supplier
                 string query = "INSERT INTO supplier (supplierName, postalCode, location, country, deliveryDays) VALUES('" + SupplierTextBox.Text + "','" + PostalTextBox.Text + "','" + locationTextBox.Text + "','" + CountryTextBox.Text + "','" + DeliveryTextBox.Text + "');";
