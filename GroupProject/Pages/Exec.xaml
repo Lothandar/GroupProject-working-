@@ -18,7 +18,7 @@
             <Button x:Name="Update" Content="Update supplier Table" HorizontalAlignment="Left" Height="46" Margin="0,0,0,72.216" VerticalAlignment="Bottom" Width="243" FontSize="22" Click="Update_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
             <Button x:Name="button_Copy" Content="Add a Supplier" Height="46" Margin="273,0,267,72.216" VerticalAlignment="Bottom" FontSize="22" Click="button_Copy_Click" d:LayoutOverrides="HorizontalAlignment"/>
             <Button x:Name="Delete_Button" Content="Delete a Supplier" Height="46" Margin="0,0,0,72.216" VerticalAlignment="Bottom" FontSize="22" HorizontalAlignment="Right" Width="217" Click="Delete_Button_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
-            <Button x:Name="Cancel_Button" Content="Cancel" Height="78" Margin="412,0,318,40.216" VerticalAlignment="Bottom" FontSize="22" Click="Cancel_Click" IsEnabled="False"/>
+            <Button x:Name="Cancel_Button" Content="Cancel" Height="43.784" Margin="273,0,329,-0.83" VerticalAlignment="Bottom" FontSize="22" Click="Cancel_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
             <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Height="43.784" VerticalAlignment="Bottom" Width="160" FontSize="22" Click="Submit_Button1" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment"/>
 
         </Grid>

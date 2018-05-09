@@ -74,7 +74,7 @@ namespace GroupProject.Pages
                     Price = double.Parse(littlelist[1]),
                     OrderDate = littlelist[4],
                     DeliveryDate = littlelist[5],
-                    Supplier = littlelist[7],
+                    Supplier = littlelist[8],
                     Authorized = false
                 });
             }
@@ -84,11 +84,12 @@ namespace GroupProject.Pages
 
         private void OrderData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PurchasedItems = new List<PurchaseItems>();
+            
             try
             {
+                PurchasedItems = new List<PurchaseItems>();
                 Int64 test = OrderedItems[OrderData.SelectedIndex].ID;
-                string query = "Select `ItemsOrdered`.* from `ItemsOrdered`, `order` Where `ItemsOrdered`.OrderID = `order`.orderNo and `order`.orderNo ='" + test + "'";
+                string query = "Select `ItemsOrdered`.* ,`order`.deliveryDate, `garden`.* , `supplierprice`.currentPrice from `ItemsOrdered`, `order`, `garden`, `supplierprice` Where `ItemsOrdered`.OrderID = `order`.orderNo and `order`.employeeNo = `supplierprice`.supplierID and  `ItemsOrdered`.itemId = `ItemsOrdered`.ItemID and `ItemsOrdered`.ItemID = `garden`.itemId and `order`.orderNo ='" + test + "'";
                 List<List<string>> list = DatabaseManagement.SelectQuery(query);
                 foreach (List<string> littlelist in list)
                 {
@@ -96,11 +97,14 @@ namespace GroupProject.Pages
                     {
                         ID = Int64.Parse(littlelist[0]),
                         Quantity = int.Parse(littlelist[2]),
-                        //Price = double.Parse(littlelist[3])
+                        Price = double.Parse(littlelist[11]),
+                        Name = littlelist[5],
+                        TotalPrice = double.Parse(littlelist[2])* double.Parse(littlelist[11])
+
 
                     });
                 }
-                ItemsData.ItemsSource = PurchasedItems;
+                DataItem.ItemsSource = PurchasedItems;
             }
             catch
             {

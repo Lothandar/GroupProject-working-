@@ -38,7 +38,7 @@ namespace GroupProject.Pages
                     ID = Int64.Parse(littlelist[0]),
                     Price = double.Parse(littlelist[1]),
                     ExpectedDelivery = littlelist[5],
-                    SupplierName = littlelist[7]
+                    SupplierName = littlelist[8]
                      
                 });
             }
@@ -49,6 +49,7 @@ namespace GroupProject.Pages
         {
             try
             {
+                orderedItems = new List<ItemsOrdered>();
                 string query = "Select `ItemsOrdered`.* from `ItemsOrdered`, `order` Where `ItemsOrdered`.OrderID = `order`.orderNo and `order`.orderNo ='" + orderItems[Orders.SelectedIndex].ID + "'";
                 List<List<string>> list = DatabaseManagement.SelectQuery(query);
                 foreach (List<string> littlelist in list)
@@ -85,11 +86,11 @@ namespace GroupProject.Pages
 
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in orderedItems)
+            foreach (ItemsOrdered item in orderedItems)
             {
                 string Query = "INSERT INTO `delivery` (orderID, itemID, deliveredDate, Damaged, missing) VALUES('"+item.OrderID+"','"+item.ItemID+"','"+DateTime.Today.ToString("yyyy-MM-dd")+"','"+ item.Dammaged +"','"+item.Missing+"'); ";
                 DatabaseManagement.Add(Query);
-                Query = "Update `garden` set StockLever += '"+(item.Quantity - item.Dammaged -item.Missing)+"' where itemId ='"+item.ItemID+"'";
+                Query = "Update `garden` set StockLever = 'StockLever + " + (item.Quantity - item.Dammaged -item.Missing)+"' where itemId ='"+item.ItemID+"'";
                 DatabaseManagement.Update(Query);
             }
             string query = "Update `order` set delivered = 1 where orderNo =" + orderItems[Orders.SelectedIndex].ID;
